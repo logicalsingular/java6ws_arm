@@ -12,7 +12,7 @@ Open xQuartz Settings:
 Tab Security -> set checkbox to Allow connection from network clients 
 
 BUILD Container:
-`docker build -t java6ws:0.0.1 .`
+`docker build --platform linux/amd64 -t java6ws:0.0.1 .`
 
 # Usage:
 RUN container:
