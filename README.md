@@ -1,3 +1,6 @@
+This is Java 6 Web Start docker image for Apple MacBook arm chips
+
+How to install:
 Install X11 Quartz Winwows Manager:
 https://www.xquartz.org
 
@@ -11,6 +14,7 @@ Tab Security -> set checkbox to Allow connection from network clients
 BUILD Container:
 docker build -t java6ws:0.0.1 .
 
+USAGE:
 RUN container:
 docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=host.docker.internal:0 --platform linux/amd64 --name java6ws -d java6ws:0.0.1
 
