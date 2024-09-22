@@ -1,14 +1,15 @@
-# FROM arm64v8/debian:stable
-FROM amd64/debian:stretch
-ENV DEBIAN_FRONTEND=noninteractive
+
+FROM amd64/debian:buster
+# FROM ubuntu
+# ENV DEBIAN_FRONTEND=noninteractive
 COPY sources.list /etc/apt/
 RUN apt update -y  
 RUN apt install java-package bash libxt6 java-common -y
-RUN groupadd -r java6 && useradd java6 -s /bin/bash -m -d /home/java6 -r -g java6
-COPY ./java6utils/* /home/java6
-RUN chown -R java6:java6 /home/java6
-USER java6 
-WORKDIR /home/java6
+RUN groupadd -r java6ws && useradd java6ws -s /bin/bash -m -d /home/java6ws -r -g java6ws
+COPY ./java6utils/* /home/java6ws
+RUN chown -R java6ws:java6ws /home/java6ws
+USER java6ws
+WORKDIR /home/java6ws
 RUN chmod +x build.sh
 RUN ./build.sh
 USER root
@@ -18,9 +19,11 @@ RUN ./install.sh
 RUN export PATH="/usr/lib/jvm/oracle-java6-jdk-amd64/bin/:$PATH"
 RUN java -version
 RUN javac -version
+RUN chmod +x run.sh
 
-# RUN apt install oracle-java6-jdk_6u45_amd64.deb -y
+COPY deb/* /tmp/
+RUN uname -a
+RUN apt-get -qy install libffi6
+RUN apt-get -qy install /tmp/*.deb
 
-#CMD [ "javaws srv248.swdc.ams1.nl.jnlp" ]
-# /usr/lib/jvm/oracle-java6-jdk-amd64/bin/javac -version
-# /usr/lib/jvm/oracle-java6-jdk-amd64/bin/java -version
+ENTRYPOINT ["/usr/bin/firefox-esr"]
