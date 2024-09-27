@@ -20,4 +20,4 @@ RUN container:
 `docker run -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=host.docker.internal:0 --platform linux/amd64 --name java6ws -d java6ws:0.0.1`'
 
 
-Video demonstration: https://youtu.be/eCUoq1QtB0A?si=zkxHv6lK-vm9X5lh 
+Video demonstration: [Youtube link here](https://youtu.be/dqIbcYNBNug?si=ZAkms8Xc9Ftf6_vR)
